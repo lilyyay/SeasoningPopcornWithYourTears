@@ -14,7 +14,7 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.Lily.seasoningpopcornwithyourtears.placeholder.PlaceholderContent;
+import com.Lily.seasoningpopcornwithyourtears.feeling.Feeling;
 import com.Lily.seasoningpopcornwithyourtears.databinding.FragmentFeelingListBinding
 import com.Lily.seasoningpopcornwithyourtears.databinding.FeelingListContentBinding
 
@@ -92,12 +92,12 @@ class FeelingListFragment : Fragment() {
     ) {
 
         recyclerView.adapter = SimpleItemRecyclerViewAdapter(
-            PlaceholderContent.ITEMS, itemDetailFragmentContainer
+            Feeling.ITEMS, itemDetailFragmentContainer
         )
     }
 
     class SimpleItemRecyclerViewAdapter(
-        private val values: List<PlaceholderContent.PlaceholderItem>,
+        private val values: List<Feeling.FeelingInstance>,
         private val itemDetailFragmentContainer: View?
     ) :
         RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
@@ -121,7 +121,7 @@ class FeelingListFragment : Fragment() {
             with(holder.itemView) {
                 tag = item
                 setOnClickListener { itemView ->
-                    val item = itemView.tag as PlaceholderContent.PlaceholderItem
+                    val item = itemView.tag as Feeling.FeelingInstance
                     val bundle = Bundle()
                     bundle.putString(
                         FeelingDetailFragment.ARG_ITEM_ID,
@@ -141,7 +141,7 @@ class FeelingListFragment : Fragment() {
                      * experience on larger screen devices
                      */
                     setOnContextClickListener { v ->
-                        val item = v.tag as PlaceholderContent.PlaceholderItem
+                        val item = v.tag as Feeling.FeelingInstance
                         Toast.makeText(
                             v.context,
                             "Context click of item " + item.id,
