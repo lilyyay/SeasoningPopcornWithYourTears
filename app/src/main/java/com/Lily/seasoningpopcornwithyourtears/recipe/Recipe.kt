@@ -12,31 +12,31 @@ import java.util.HashMap
 object Recipe {
 
     /**
-     * An array of sample (feeling) items.
+     * An array of sample (recipe) items.
      */
-    val ITEMS: MutableList<FeelingInstance> = ArrayList()
+    val ITEMS: MutableList<RecipeInstance> = ArrayList()
 
     /**
-     * A map of sample (feeling) items, by ID.
+     * A map of sample (recipe) items, by ID.
      */
-    val ITEM_MAP: MutableMap<String, FeelingInstance> = HashMap()
+    val ITEM_MAP: MutableMap<String, RecipeInstance> = HashMap()
 
     private val COUNT = 25
 
     init {
         // Add some sample items.
         for (i in 1..COUNT) {
-            addItem(createFeelingInstance(i))
+            addItem(createRecipeInstance(i))
         }
     }
 
-    private fun addItem(item: FeelingInstance) {
+    private fun addItem(item: RecipeInstance) {
         ITEMS.add(item)
         ITEM_MAP.put(item.id, item)
     }
 
-    private fun createFeelingInstance(position: Int): FeelingInstance {
-        return FeelingInstance(position.toString(), "feeling " + position, makeDetails(position))
+    private fun createRecipeInstance(position: Int): RecipeInstance {
+        return RecipeInstance(position.toString(), "recipe " + position, makeDetails(position))
     }
 
     private fun makeDetails(position: Int): String {
@@ -49,9 +49,9 @@ object Recipe {
     }
 
     /**
-     * A feeling item representing a piece of content.
+     * A recipe item representing a piece of content.
      */
-    data class FeelingInstance(val id: String, val content: String, val details: String) {
+    data class RecipeInstance(val id: String, val content: String, val details: String) {
         override fun toString(): String = content
     }
 }

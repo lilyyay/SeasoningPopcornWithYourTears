@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.Lily.seasoningpopcornwithyourtears.databinding.FragmentRecipeListBinding
 import com.Lily.seasoningpopcornwithyourtears.databinding.RecipeListContentBinding
-import com.Lily.seasoningpopcornwithyourtears.feeling.Feeling
+import com.Lily.seasoningpopcornwithyourtears.recipe.Recipe
 
 class RecipeListFragment : Fragment() {
 
@@ -46,10 +46,10 @@ class RecipeListFragment : Fragment() {
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView){
-        recyclerView.adapter = SimpleItemRecyclerViewAdapter(Feeling.ITEMS)
+        recyclerView.adapter = SimpleItemRecyclerViewAdapter(Recipe.ITEMS)
     }
 
-    class SimpleItemRecyclerViewAdapter(private val values: List<Feeling.FeelingInstance>):
+    class SimpleItemRecyclerViewAdapter(private val values: List<Recipe.RecipeInstance>):
             RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>(){
 
         inner class ViewHolder(binding: RecipeListContentBinding): RecyclerView.ViewHolder(binding.root){
