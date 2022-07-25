@@ -2,6 +2,7 @@ package com.Lily.seasoningpopcornwithyourtears
 
 import android.content.ClipData
 import android.os.Bundle
+import android.util.Log
 import android.view.DragEvent
 import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -9,8 +10,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.Lily.seasoningpopcornwithyourtears.placeholder.PlaceholderContent
 import com.Lily.seasoningpopcornwithyourtears.databinding.FragmentFeelingDetailBinding
+import com.Lily.seasoningpopcornwithyourtears.databinding.FragmentRecipeListBinding
 
 /**
  * A fragment representing a single Feeling detail screen.
@@ -25,7 +28,6 @@ class FeelingDetailFragment : Fragment() {
      */
     private var item: PlaceholderContent.PlaceholderItem? = null
 
-    lateinit var itemDetailTextView: TextView
     private var toolbarLayout: CollapsingToolbarLayout? = null
 
     private var _binding: FragmentFeelingDetailBinding? = null
@@ -46,6 +48,7 @@ class FeelingDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("FeelingDetailFragment", "Vettom: onCreate called");
 
         arguments?.let {
             if (it.containsKey(ARG_ITEM_ID)) {
@@ -63,10 +66,10 @@ class FeelingDetailFragment : Fragment() {
     ): View? {
 
         _binding = FragmentFeelingDetailBinding.inflate(inflater, container, false)
+
         val rootView = binding.root
 
         toolbarLayout = binding.toolbarLayout
-        itemDetailTextView = binding.feelingDetail
 
         updateContent()
         rootView.setOnDragListener(dragListener)
@@ -76,11 +79,9 @@ class FeelingDetailFragment : Fragment() {
 
     private fun updateContent() {
         toolbarLayout?.title = item?.content
+        // TODO Set Real Recipe List
+        Log.d("FeelingDetailFragment", "Vettom: updateContent called");
 
-        // Show the placeholder content as text in a TextView.
-        item?.let {
-            itemDetailTextView.text = it.details
-        }
     }
 
     companion object {
