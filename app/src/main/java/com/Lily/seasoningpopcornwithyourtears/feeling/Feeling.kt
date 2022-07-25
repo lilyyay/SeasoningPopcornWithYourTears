@@ -24,19 +24,22 @@ object Feeling {
     private val COUNT = 25
 
     init {
-        // Add some sample items.
-        for (i in 1..COUNT) {
-            addItem(createFeelingInstance(i))
+
+            addItem(createFeelingInstance(1, "lonely"))
+        addItem(createFeelingInstance(2, "angry"))
+        addItem(createFeelingInstance(3, "heart-broken"))
+        addItem(createFeelingInstance(4, "hopeless"))
+        addItem(createFeelingInstance(5, "hopeful"))
         }
-    }
+
 
     private fun addItem(item: FeelingInstance) {
         ITEMS.add(item)
         ITEM_MAP.put(item.id, item)
     }
 
-    private fun createFeelingInstance(position: Int): FeelingInstance {
-        return FeelingInstance(position.toString(), "feeling " + position, makeDetails(position))
+    private fun createFeelingInstance(position: Int, feelingName: String): FeelingInstance {
+        return FeelingInstance(position.toString(), feelingName, makeDetails(position))
     }
 
     private fun makeDetails(position: Int): String {

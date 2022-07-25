@@ -78,7 +78,7 @@ class RecipeListFragment : Fragment() {
             position: Int
         ) {
             val  item = values[position]
-            holder.idView.text = item.id
+            holder.idView.text = item.content
 
             // TODO add click listeners
         }

@@ -25,9 +25,8 @@ object Recipe {
 
     init {
         // Add some sample items.
-        for (i in 1..COUNT) {
-            addItem(createRecipeInstance(i))
-        }
+
+            addItem(createRecipeInstance(1, "Pizza rolls"))
     }
 
     private fun addItem(item: RecipeInstance) {
@@ -35,8 +34,9 @@ object Recipe {
         ITEM_MAP.put(item.id, item)
     }
 
-    private fun createRecipeInstance(position: Int): RecipeInstance {
-        return RecipeInstance(position.toString(), "recipe " + position, makeDetails(position))
+    private fun createRecipeInstance(position: Int, recipeName: String): RecipeInstance {
+
+    return RecipeInstance(position.toString(), recipeName, makeDetails(position))
     }
 
     private fun makeDetails(position: Int): String {
