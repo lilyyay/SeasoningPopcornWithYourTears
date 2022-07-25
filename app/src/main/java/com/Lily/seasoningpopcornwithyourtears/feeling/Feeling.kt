@@ -1,4 +1,4 @@
-package com.Lily.seasoningpopcornwithyourtears.placeholder
+package com.Lily.seasoningpopcornwithyourtears.feeling
 
 import java.util.ArrayList
 import java.util.HashMap
@@ -9,34 +9,34 @@ import java.util.HashMap
  *
  * TODO: Replace all uses of this class before publishing your app.
  */
-object PlaceholderContent {
+object Feeling {
 
     /**
-     * An array of sample (placeholder) items.
+     * An array of sample (feeling) items.
      */
-    val ITEMS: MutableList<PlaceholderItem> = ArrayList()
+    val ITEMS: MutableList<FeelingInstance> = ArrayList()
 
     /**
-     * A map of sample (placeholder) items, by ID.
+     * A map of sample (feeling) items, by ID.
      */
-    val ITEM_MAP: MutableMap<String, PlaceholderItem> = HashMap()
+    val ITEM_MAP: MutableMap<String, FeelingInstance> = HashMap()
 
     private val COUNT = 25
 
     init {
         // Add some sample items.
         for (i in 1..COUNT) {
-            addItem(createPlaceholderItem(i))
+            addItem(createFeelingInstance(i))
         }
     }
 
-    private fun addItem(item: PlaceholderItem) {
+    private fun addItem(item: FeelingInstance) {
         ITEMS.add(item)
         ITEM_MAP.put(item.id, item)
     }
 
-    private fun createPlaceholderItem(position: Int): PlaceholderItem {
-        return PlaceholderItem(position.toString(), "feeling " + position, makeDetails(position))
+    private fun createFeelingInstance(position: Int): FeelingInstance {
+        return FeelingInstance(position.toString(), "feeling " + position, makeDetails(position))
     }
 
     private fun makeDetails(position: Int): String {
@@ -49,9 +49,9 @@ object PlaceholderContent {
     }
 
     /**
-     * A placeholder item representing a piece of content.
+     * A feeling item representing a piece of content.
      */
-    data class PlaceholderItem(val id: String, val content: String, val details: String) {
+    data class FeelingInstance(val id: String, val content: String, val details: String) {
         override fun toString(): String = content
     }
 }

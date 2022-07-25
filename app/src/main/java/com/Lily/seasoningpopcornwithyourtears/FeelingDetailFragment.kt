@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.Lily.seasoningpopcornwithyourtears.placeholder.PlaceholderContent
+import com.Lily.seasoningpopcornwithyourtears.feeling.Feeling
 import com.Lily.seasoningpopcornwithyourtears.databinding.FragmentFeelingDetailBinding
 import com.Lily.seasoningpopcornwithyourtears.databinding.FragmentRecipeListBinding
 
@@ -24,9 +24,9 @@ import com.Lily.seasoningpopcornwithyourtears.databinding.FragmentRecipeListBind
 class FeelingDetailFragment : Fragment() {
 
     /**
-     * The placeholder content this fragment is presenting.
+     * The feeling content this fragment is presenting.
      */
-    private var item: PlaceholderContent.PlaceholderItem? = null
+    private var item: Feeling.FeelingInstance? = null
 
     private var toolbarLayout: CollapsingToolbarLayout? = null
 
@@ -40,7 +40,7 @@ class FeelingDetailFragment : Fragment() {
         if (event.action == DragEvent.ACTION_DROP) {
             val clipDataItem: ClipData.Item = event.clipData.getItemAt(0)
             val dragData = clipDataItem.text
-            item = PlaceholderContent.ITEM_MAP[dragData]
+            item = Feeling.ITEM_MAP[dragData]
             updateContent()
         }
         true
@@ -52,10 +52,10 @@ class FeelingDetailFragment : Fragment() {
 
         arguments?.let {
             if (it.containsKey(ARG_ITEM_ID)) {
-                // Load the placeholder content specified by the fragment
+                // Load the feeling content specified by the fragment
                 // arguments. In a real-world scenario, use a Loader
                 // to load content from a content provider.
-                item = PlaceholderContent.ITEM_MAP[it.getString(ARG_ITEM_ID)]
+                item = Feeling.ITEM_MAP[it.getString(ARG_ITEM_ID)]
             }
         }
     }
