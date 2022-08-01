@@ -24,6 +24,7 @@ object Feeling {
     val ITEM_MAP: MutableMap<String, FeelingInstance> = HashMap()
 
     init {
+        // TODO: Add new feelings. The "arrayOf" indicates which recipes it's tied to
         addItem(createFeelingInstance( "lonely", arrayOf("1")))
         addItem(createFeelingInstance( "angry", arrayOf("2")))
         addItem(createFeelingInstance("heart-broken", arrayOf("1", "2")))

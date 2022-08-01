@@ -23,7 +23,7 @@ object Recipe {
 
 
     init {
-        // Add some sample items.
+        // TODO: Add more recipes. These IDs get correlate to the Feelings list
         addItem(RecipeInstance("1", "Pizza rolls", "recipe", "ingredients"))
         addItem(RecipeInstance("2", "Recipe 2", "recipe", "ingredients"))
         addItem(RecipeInstance("3", "Recipe 3", "recipe", "ingredients"))
