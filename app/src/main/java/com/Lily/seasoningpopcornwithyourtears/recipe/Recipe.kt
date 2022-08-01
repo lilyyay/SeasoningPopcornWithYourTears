@@ -21,12 +21,23 @@ object Recipe {
      */
     val ITEM_MAP: MutableMap<String, RecipeInstance> = HashMap()
 
-    private val COUNT = 25
 
     init {
         // Add some sample items.
+        addItem(RecipeInstance("1", "Pizza rolls", "recipe", "ingredients"))
+        addItem(RecipeInstance("2", "Recipe 2", "recipe", "ingredients"))
+        addItem(RecipeInstance("3", "Recipe 3", "recipe", "ingredients"))
+    }
 
-            addItem(createRecipeInstance(1, "Pizza rolls"))
+    fun getRecipesByIds(itemIds: Array<String>): MutableList<RecipeInstance>{
+        val requestedRecipes: MutableList<RecipeInstance> = ArrayList()
+        for(requestedId in itemIds){
+            val recipe: RecipeInstance?= ITEM_MAP[requestedId]
+            if(recipe != null){
+                requestedRecipes.add(recipe)
+            }
+        }
+        return requestedRecipes;
     }
 
     private fun addItem(item: RecipeInstance) {
@@ -34,24 +45,14 @@ object Recipe {
         ITEM_MAP.put(item.id, item)
     }
 
-    private fun createRecipeInstance(position: Int, recipeName: String): RecipeInstance {
-
-    return RecipeInstance(position.toString(), recipeName, makeDetails(position))
-    }
-
-    private fun makeDetails(position: Int): String {
-        val builder = StringBuilder()
-        builder.append("Details about Item: ").append(position)
-        for (i in 0..position - 1) {
-            builder.append("\nMore details information here.")
-        }
-        return builder.toString()
-    }
 
     /**
      * A recipe item representing a piece of content.
      */
-    data class RecipeInstance(val id: String, val content: String, val details: String) {
-        override fun toString(): String = content
+    data class RecipeInstance(val id: String,
+                              val name: String,
+                              val recipe: String,
+                              val ingredients: String) {
+        override fun toString(): String = name
     }
 }

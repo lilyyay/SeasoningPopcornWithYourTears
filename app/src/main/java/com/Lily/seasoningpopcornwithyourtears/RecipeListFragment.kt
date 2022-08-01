@@ -2,21 +2,21 @@ package com.Lily.seasoningpopcornwithyourtears
 
 import android.os.Bundle
 import android.util.Log
-import android.util.Log.DEBUG
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.Lily.seasoningpopcornwithyourtears.databinding.FragmentRecipeListBinding
 import com.Lily.seasoningpopcornwithyourtears.databinding.RecipeListContentBinding
+import com.Lily.seasoningpopcornwithyourtears.feeling.Feeling
 import com.Lily.seasoningpopcornwithyourtears.recipe.Recipe
 
 class RecipeListFragment : Fragment() {
 
     private var _binding: FragmentRecipeListBinding? = null
+
 
     private val binding get() = _binding!!
 
@@ -35,8 +35,8 @@ class RecipeListFragment : Fragment() {
         Log.d("RecipeListFragement", "Vettom: onViewCreated called");
 
         val recyclerView: RecyclerView = binding.recipeList
-
-         setupRecyclerView(recyclerView)
+        val parentFrag: FeelingDetailFragment = this@RecipeListFragment.getParentFragment() as FeelingDetailFragment
+        setupRecyclerView(recyclerView, parentFrag.item)
         // TODO: Add itemDetailFragmentContainer for Tablets
     }
 
@@ -45,8 +45,12 @@ class RecipeListFragment : Fragment() {
         _binding = null
     }
 
-    private fun setupRecyclerView(recyclerView: RecyclerView){
-        recyclerView.adapter = SimpleItemRecyclerViewAdapter(Recipe.ITEMS)
+    private fun setupRecyclerView(recyclerView: RecyclerView, feeling: Feeling.FeelingInstance?){
+        if(feeling != null){
+            recyclerView.adapter = SimpleItemRecyclerViewAdapter(Recipe.getRecipesByIds(feeling.recipeIds))
+        }else{
+            recyclerView.adapter = SimpleItemRecyclerViewAdapter(Recipe.ITEMS)
+        }
     }
 
     class SimpleItemRecyclerViewAdapter(private val values: List<Recipe.RecipeInstance>):
@@ -78,7 +82,7 @@ class RecipeListFragment : Fragment() {
             position: Int
         ) {
             val  item = values[position]
-            holder.idView.text = item.content
+            holder.idView.text = item.name
 
             // TODO add click listeners
         }

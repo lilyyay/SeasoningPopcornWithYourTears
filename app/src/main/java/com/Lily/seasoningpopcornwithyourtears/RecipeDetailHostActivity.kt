@@ -15,7 +15,7 @@ class RecipeDetailHostActivity: AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("RecipeDetailHostActivity", "Vettom: onCreate called");
+        Log.d("RecipeDetailHostActivit", "Vettom: onCreate called");
         super.onCreate(savedInstanceState)
 
         val binding = ActivityRecipeDetailBinding.inflate(layoutInflater)

@@ -11,6 +11,8 @@ import java.util.HashMap
  */
 object Feeling {
 
+    val FEELING_KEY: String = "FEELING_KEY"
+
     /**
      * An array of sample (feeling) items.
      */
@@ -21,16 +23,13 @@ object Feeling {
      */
     val ITEM_MAP: MutableMap<String, FeelingInstance> = HashMap()
 
-    private val COUNT = 25
-
     init {
-
-            addItem(createFeelingInstance(1, "lonely"))
-        addItem(createFeelingInstance(2, "angry"))
-        addItem(createFeelingInstance(3, "heart-broken"))
-        addItem(createFeelingInstance(4, "hopeless"))
-        addItem(createFeelingInstance(5, "hopeful"))
-        }
+        addItem(createFeelingInstance( "lonely", arrayOf("1")))
+        addItem(createFeelingInstance( "angry", arrayOf("2")))
+        addItem(createFeelingInstance("heart-broken", arrayOf("1", "2")))
+        addItem(createFeelingInstance("hopeless", arrayOf("3")))
+        addItem(createFeelingInstance("hopeful", arrayOf("2", "3")))
+    }
 
 
     private fun addItem(item: FeelingInstance) {
@@ -38,23 +37,23 @@ object Feeling {
         ITEM_MAP.put(item.id, item)
     }
 
-    private fun createFeelingInstance(position: Int, feelingName: String): FeelingInstance {
-        return FeelingInstance(position.toString(), feelingName, makeDetails(position))
+    private fun createFeelingInstance(feelingName: String, recipeIds: Array<String>): FeelingInstance {
+        val instanceIndex: Int = FeelingInstance.getAndIncrementInstanceCount()
+        return FeelingInstance(instanceIndex.toString(), feelingName, recipeIds)
     }
 
-    private fun makeDetails(position: Int): String {
-        val builder = StringBuilder()
-        builder.append("Details about Item: ").append(position)
-        for (i in 0..position - 1) {
-            builder.append("\nMore details information here.")
-        }
-        return builder.toString()
-    }
 
     /**
      * A feeling item representing a piece of content.
      */
-    data class FeelingInstance(val id: String, val content: String, val details: String) {
-        override fun toString(): String = content
+    data class FeelingInstance(val id: String, val name: String, var recipeIds: Array<String>) {
+        companion object{
+            private var instanceCount: Int = 0
+            fun getAndIncrementInstanceCount(): Int{
+                instanceCount += 1
+                return instanceCount
+            }
+        }
+        override fun toString(): String = name
     }
 }

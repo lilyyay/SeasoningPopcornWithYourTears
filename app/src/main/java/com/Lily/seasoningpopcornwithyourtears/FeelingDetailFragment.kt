@@ -26,7 +26,7 @@ class FeelingDetailFragment : Fragment() {
     /**
      * The feeling content this fragment is presenting.
      */
-    private var item: Feeling.FeelingInstance? = null
+    public var item: Feeling.FeelingInstance? = null
 
     private var toolbarLayout: CollapsingToolbarLayout? = null
 
@@ -78,7 +78,7 @@ class FeelingDetailFragment : Fragment() {
     }
 
     private fun updateContent() {
-        toolbarLayout?.title = item?.content
+        toolbarLayout?.title = item?.name
         // TODO Set Real Recipe List
         Log.d("FeelingDetailFragment", "Vettom: updateContent called");
 

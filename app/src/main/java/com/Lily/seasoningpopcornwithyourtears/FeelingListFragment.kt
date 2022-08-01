@@ -116,7 +116,7 @@ class FeelingListFragment : Fragment() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val item = values[position]
             holder.idView.text = item.id
-            holder.contentView.text = item.content
+            holder.contentView.text = item.name
 
             with(holder.itemView) {
                 tag = item
@@ -127,6 +127,7 @@ class FeelingListFragment : Fragment() {
                         FeelingDetailFragment.ARG_ITEM_ID,
                         item.id
                     )
+                    bundle.putString(Feeling.FEELING_KEY, item.id)
                     if (itemDetailFragmentContainer != null) {
                         itemDetailFragmentContainer.findNavController()
                             .navigate(R.id.fragment_feeling_detail, bundle)

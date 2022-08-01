@@ -15,7 +15,7 @@ class FeelingDetailHostActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("FeelingDetailHostActivity", "Vettom: onCreate called");
+        Log.d("FeelingDetailHostAct", "Vettom: onCreate called");
         super.onCreate(savedInstanceState)
 
         val binding = ActivityFeelingDetailBinding.inflate(layoutInflater)
