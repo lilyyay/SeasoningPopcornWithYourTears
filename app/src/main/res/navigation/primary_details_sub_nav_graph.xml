@@ -13,20 +13,6 @@
             android:name="item_id"
             android:defaultValue=""
             app:argType="string" />
-        <action
-            android:id="@+id/show_recipe_detail"
-            app:destination="@id/fragment_recipe_detail" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/fragment_recipe_detail"
-        android:name="com.Lily.seasoningpopcornwithyourtears.RecipeDetailFragment"
-        android:label="Recipe Detail"
-        android:layout="@layout/activity_recipe_detail">
-        <argument
-            android:name="item_id"
-            android:defaultValue=""
-            app:argType="string"/>
     </fragment>
 
 </navigation>

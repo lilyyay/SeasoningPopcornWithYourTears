@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.Lily.seasoningpopcornwithyourtears.databinding.FragmentRecipeListBinding
 import com.Lily.seasoningpopcornwithyourtears.databinding.RecipeListContentBinding
@@ -14,6 +15,10 @@ import com.Lily.seasoningpopcornwithyourtears.feeling.Feeling
 import com.Lily.seasoningpopcornwithyourtears.recipe.Recipe
 
 class RecipeListFragment : Fragment() {
+
+    companion object{
+        public val ARG_RECIPE_ID: String = "recipe_id"
+    }
 
     private var _binding: FragmentRecipeListBinding? = null
 
@@ -36,7 +41,13 @@ class RecipeListFragment : Fragment() {
 
         val recyclerView: RecyclerView = binding.recipeList
         val parentFrag: FeelingDetailFragment = this@RecipeListFragment.getParentFragment() as FeelingDetailFragment
-        setupRecyclerView(recyclerView, parentFrag.item)
+
+        // Leaving this not using view binding as it relies on if the view is visible the current
+        // layout configuration (layout, layout-sw600dp)
+        val itemDetailFragmentContainer: View? =
+            view.findViewById(R.id.feeling_detail_nav_container)
+
+        setupRecyclerView(recyclerView, parentFrag.item, itemDetailFragmentContainer)
         // TODO: Add itemDetailFragmentContainer for Tablets
     }
 
@@ -45,15 +56,16 @@ class RecipeListFragment : Fragment() {
         _binding = null
     }
 
-    private fun setupRecyclerView(recyclerView: RecyclerView, feeling: Feeling.FeelingInstance?){
+    private fun setupRecyclerView(recyclerView: RecyclerView, feeling: Feeling.FeelingInstance?, itemDetailFragmentContainer: View?){
         if(feeling != null){
-            recyclerView.adapter = SimpleItemRecyclerViewAdapter(Recipe.getRecipesByIds(feeling.recipeIds))
+            recyclerView.adapter = SimpleItemRecyclerViewAdapter(Recipe.getRecipesByIds(feeling.recipeIds), itemDetailFragmentContainer)
         }else{
-            recyclerView.adapter = SimpleItemRecyclerViewAdapter(Recipe.ITEMS)
+            recyclerView.adapter = SimpleItemRecyclerViewAdapter(Recipe.ITEMS, itemDetailFragmentContainer)
         }
     }
 
-    class SimpleItemRecyclerViewAdapter(private val values: List<Recipe.RecipeInstance>):
+    class SimpleItemRecyclerViewAdapter(private val values: List<Recipe.RecipeInstance>,
+                                        private val itemDetailFragmentContainer: View?):
             RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>(){
 
         inner class ViewHolder(binding: RecipeListContentBinding): RecyclerView.ViewHolder(binding.root){
@@ -83,6 +95,19 @@ class RecipeListFragment : Fragment() {
         ) {
             val  item = values[position]
             holder.idView.text = item.name
+
+            with(holder.itemView) {
+                tag = item
+                setOnClickListener{ itemView ->
+                    val item = itemView.tag as Recipe.RecipeInstance
+                    val bundle = Bundle()
+                    bundle.putString(RecipeListFragment.ARG_RECIPE_ID,
+                        item.id
+                    )
+                    itemView.findNavController().navigate(R.id.show_recipe_detail, bundle)
+
+                }
+            }
 
             // TODO add click listeners
         }
