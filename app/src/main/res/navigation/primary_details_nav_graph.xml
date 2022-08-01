@@ -18,9 +18,23 @@
         android:name="com.Lily.seasoningpopcornwithyourtears.FeelingDetailFragment"
         android:label="feeling_detail"
         tools:layout="@layout/fragment_feeling_detail">
+        <action
+        android:id="@+id/show_recipe_detail"
+        app:destination="@id/fragment_recipe_detail" />
         <argument
             android:name="item_id"
             android:defaultValue=""
             app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_recipe_detail"
+        android:name="com.Lily.seasoningpopcornwithyourtears.RecipeDetailFragment"
+        android:label="Recipe Detail"
+        android:layout="@layout/fragment_recipe_detail">
+        <argument
+            android:name="recipe_id"
+            android:defaultValue=""
+            app:argType="string"/>
     </fragment>
 </navigation>
