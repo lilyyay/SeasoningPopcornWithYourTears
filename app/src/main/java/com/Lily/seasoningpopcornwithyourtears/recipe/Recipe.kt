@@ -25,8 +25,11 @@ object Recipe {
     init {
         // TODO: Add more recipes. These IDs get correlate to the Feelings list
         addItem(RecipeInstance("1", "Pizza rolls", "recipe", "ingredients"))
-        addItem(RecipeInstance("2", "Recipe 2", "recipe", "ingredients"))
-        addItem(RecipeInstance("3", "Recipe 3", "recipe", "ingredients"))
+        addItem(RecipeInstance("2", "Guacamole", "recipe", "ingredients"))
+        addItem(RecipeInstance("3", "Rootbeer float", "recipe", "ingredients"))
+        addItem(RecipeInstance("4", "Artisan bread", "recipe", "ingredients"))
+        addItem(RecipeInstance("5", "Sugar cookies", "recipe", "ingredients"))
+        addItem(RecipeInstance("6", "Sparkiling sorbet", "recipe", "ingredients"))
     }
 
     fun getRecipesByIds(itemIds: Array<String>): MutableList<RecipeInstance>{

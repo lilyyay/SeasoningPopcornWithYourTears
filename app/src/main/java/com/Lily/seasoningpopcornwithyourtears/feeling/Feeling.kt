@@ -25,11 +25,11 @@ object Feeling {
 
     init {
         // TODO: Add new feelings. The "arrayOf" indicates which recipes it's tied to
-        addItem(createFeelingInstance( "lonely", arrayOf("1")))
+        addItem(createFeelingInstance( "lonely", arrayOf("1", "4")))
         addItem(createFeelingInstance( "angry", arrayOf("2")))
-        addItem(createFeelingInstance("heart-broken", arrayOf("1", "2")))
-        addItem(createFeelingInstance("hopeless", arrayOf("3")))
-        addItem(createFeelingInstance("hopeful", arrayOf("2", "3")))
+        addItem(createFeelingInstance("heart-broken", arrayOf("3", "6")))
+        addItem(createFeelingInstance("hopeless", arrayOf("4")))
+        addItem(createFeelingInstance("hopeful", arrayOf("5")))
     }
 
 
